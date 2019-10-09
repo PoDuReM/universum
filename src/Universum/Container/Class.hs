@@ -11,6 +11,9 @@
 {-# LANGUAGE UndecidableInstances    #-}
 
 {-# OPTIONS_GHC -fno-warn-unticked-promoted-constructors #-}
+#if __GLASGOW_HASKELL__ < 820
+{-# OPTIONS_GHC -fno-warn-unused-type-patterns #-}
+#endif
 
 -- | Reimagined approach for 'Foldable' type hierarchy. Forbids usages
 -- of 'length' function and similar over 'Maybe' and other potentially unsafe
