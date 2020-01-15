@@ -72,7 +72,11 @@ install:
 
 script:
 
+  # Verify cross references
+  - wget -O - https://github.com/serokell/xrefcheck/releases/download/v0.1.0.0/release.tar.gz | tar xzv && xrefcheck/bin/xrefcheck
+  # Run tests
   - travis_wait 40 stack build --test --no-terminal
+  # Optionally run liquidhaskell
   - |
     if [ "$STACK_YAML" == "$HOME/build/serokell/universum/stack-liquid.yaml" ]; then
       stack exec -- liquid --totalhaskell src/Universum/Unsafe.hs
